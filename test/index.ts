@@ -10,14 +10,17 @@ m.describe('Download', () => {
     let dl = new RPSDownload;
 
     let output = await dl.download(new RpsContext,{},
-      "./dist","https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png");
+      "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png");
 
     console.log(output);
 
-    let fn:any = await dl.download(new RpsContext,{});
+    let fn:any = await dl.download(new RpsContext,{dest:'./dist2'});
+    output = fn(["https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"]);
 
-    output = fn('./dist2')(["https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"]);
-    output = fn('./dist3')("https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png");
+  console.log(output);
+
+    fn = await dl.download(new RpsContext,{dest:'./dist3'});
+    output = fn("https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png");
     
     console.log(output);
 
